@@ -1,0 +1,22 @@
+{
+  "name": "Caseiro Pizzaria - Garçom Mobile",
+  "short_name": "Caseiro Pizzaria",
+  "description": "Aplicativo Mobile de Atendimento e Mesas da Caseiro Pizzaria",
+  "start_url": "/garcom",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#e11d48",
+  "icons": [
+    {
+      "src": "/media/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/media/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,2574 @@
+/* Visual baseado no EiChefe Gestao (cores/fontes extraidas do CSS e dos componentes do front-end) */
+:root {
+  --bg: #f1f2f8;           /* body do EiChefe */
+  --text: #252c38;         /* titulos do KDS */
+  --primary: #007bff;      /* bootstrap */
+  --success: #28a745;
+  --danger: #dc3545;
+  --secondary: #6c757d;
+  --border: #dee2e6;
+  --muted: #6c757d;
+  --salao: #7a4cf5;  --salao-bg: #f6edfe;
+  --delivery: #d03982; --delivery-bg: #f6e6f0;
+  --balcao: #159c3f; --balcao-bg: #e8f9ee;
+  --chip: #efe8fa;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Roboto', 'Calibri', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; }
+
+/* Topo */
+header { background: #fff; border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+header h1 { font-size: 18px; margin: 0; color: var(--text); padding: 14px 0; }
+nav { display: flex; gap: 2px; flex: 1; flex-wrap: wrap; }
+nav button { background: transparent; color: var(--secondary); border: 0; border-bottom: 3px solid transparent; padding: 18px 14px 15px; cursor: pointer; font: inherit; font-weight: 500; }
+nav button:hover { color: var(--text); }
+nav button.active { color: var(--primary); border-bottom-color: var(--primary); }
+header .user { color: var(--secondary); }
+
+main { padding: 20px; max-width: 1400px; margin: auto; }
+.card { background: #fff; border-radius: 8px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 16px; }
+.card h3 { margin: 0 0 12px; font-size: 15px; font-weight: 700; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+.split { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+.muted { color: var(--muted); font-size: 13px; }
+
+/* Botoes bootstrap */
+button.btn { background: var(--primary); color: #fff; border: 1px solid transparent; padding: 7px 14px; border-radius: 4px; cursor: pointer; font: inherit; }
+button.btn:hover { filter: brightness(.93); }
+button.btn.sec { background: #fff; color: var(--secondary); border-color: var(--secondary); }
+button.btn.ok { background: var(--success); }
+button.btn.danger { background: var(--danger); }
+button.btn.sm { padding: 3px 9px; font-size: 12px; }
+input, select, textarea { padding: 7px 10px; border: 1px solid #ced4da; border-radius: 4px; font: inherit; background: #fff; }
+input:focus, select:focus { outline: 0; border-color: #80bdff; box-shadow: 0 0 0 .2rem rgba(0,123,255,.2); }
+
+/* Tabelas: cabecalho em caixa alta como no EiChefe */
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 8px; border-bottom: 2px solid var(--border); text-transform: uppercase; font-size: 12px; color: var(--secondary); letter-spacing: .3px; }
+td { padding: 8px; border-bottom: 1px solid #eceef1; vertical-align: top; }
+tr:hover td { background: #fafbfd; }
+
+/* Etiquetas de tipo de venda (cores do KDS do EiChefe) */
+.chip { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; background: var(--chip); color: var(--salao); }
+.chip.mesa { background: var(--salao-bg); color: var(--salao); }
+.chip.delivery { background: var(--delivery-bg); color: var(--delivery); }
+.chip.balcao { background: var(--balcao-bg); color: var(--balcao); }
+.badge { padding: 2px 8px; border-radius: 10px; font-size: 12px; background: #e9ecef; }
+.badge.pendente { background: #fff3cd; } .badge.preparo { background: #cfe2ff; } .badge.pronto { background: #d1e7dd; }
+.badge.saiu { background: #e9d5ff; } .badge.entregue { background: #d1fae5; } .badge.cancelado { background: #f8d7da; }
+.count { display: inline-block; min-width: 24px; text-align: center; padding: 2px 8px; border-radius: 10px; background: var(--chip); color: var(--salao); font-weight: 700; font-size: 14px; }
+
+/* Salao / mesas */
+.table-box { padding: 14px 6px; border-radius: 8px; text-align: center; cursor: pointer; font-weight: 700; border: 2px solid transparent; }
+.table-box.livre { background: var(--balcao-bg); color: var(--balcao); }
+.table-box.ocupada { background: #fde8ea; color: var(--danger); }
+.table-box.sel { border-color: var(--primary); }
+
+/* Cardapio */
+.prod { cursor: pointer; padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+.prod:hover { border-color: var(--primary); }
+.prod.on { border-color: var(--primary); background: #e7f1ff; }
+.prod.off { opacity: .4; cursor: not-allowed; }
+.pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.pill { padding: 4px 12px; border-radius: 16px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 13px; }
+.pill.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+.scroll { max-height: 360px; overflow-y: auto; }
+.results { border: 1px solid var(--border); border-radius: 4px; max-height: 180px; overflow-y: auto; background: #fff; }
+.results div { padding: 6px 10px; cursor: pointer; border-bottom: 1px solid #eee; }
+.results div:hover { background: #e7f1ff; }
+
+/* KDS em colunas, como o BaseColunasKDS do EiChefe */
+.kds-board { display: flex; gap: 12px; overflow-x: auto; align-items: flex-start; padding-bottom: 8px; }
+.kds-col { flex: 0 0 300px; background: #f8f4ff; border-radius: 8px; padding: 12px; min-height: 200px; }
+.kds-col h4 { margin: 0 0 12px; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.kds-card { background: #fff; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; border-left: 5px solid var(--salao); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.kds-card.delivery { border-left-color: var(--delivery); }
+.kds-card.balcao { border-left-color: var(--balcao); }
+.kds-card .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.kds-card button { width: 100%; margin-top: 8px; }
+.late { color: var(--danger); font-weight: 700; }
+
+/* Dashboard */
+.kpi { text-align: left; }
+.kpi .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .3px; }
+.kpi .value { font-size: 26px; font-weight: 700; margin-top: 4px; }
+.kpi.salao .value { color: var(--salao); } .kpi.delivery .value { color: var(--delivery); } .kpi.balcao .value { color: var(--balcao); }
+.bars { display: flex; align-items: flex-end; gap: 4px; height: 160px; }
+.bars .bar { flex: 1; background: var(--primary); border-radius: 4px 4px 0 0; min-height: 2px; position: relative; }
+.bars .bar span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 10px; color: var(--muted); }
+
+/* Login / modal */
+.login { max-width: 340px; margin: 100px auto; }
+.login input { width: 100%; margin-bottom: 10px; }
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 16px; }
+.modal { background: #fff; border-radius: 8px; padding: 20px; min-width: 320px; max-width: 92vw; max-height: 92vh; overflow-y: auto; }
+.modal.wide { width: 820px; }
+.modal h3 { margin-top: 0; }
+.pay-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.pay-box { background: var(--bg); border-radius: 6px; padding: 10px 12px; border-left: 4px solid var(--primary); }
+.pay-box.ok { border-left-color: var(--success); }
+.pay-box.warn { border-left-color: var(--delivery); }
+.pay-box .lbl { font-size: 11px; text-transform: uppercase; color: var(--muted); }
+.pay-box .val { font-size: 19px; font-weight: 700; margin-top: 2px; }
+tr.item-paid td { opacity: .48; text-decoration: line-through; }
+tr.item-sel td { background: #e7f1ff; }
+#toast { position: fixed; bottom: 20px; right: 20px; background: var(--text); color: #fff; padding: 10px 16px; border-radius: 6px; display: none; z-index: 60; }
+
+/* Impressoras Térmicas (Estilo Exato EiChefe ESC/POS - Tudo em Negrito e Sem Corte) */
+.eichefe-printer-row { background: #FDF3EA; color: #000; }
+.impressoraOn { color: #159c3f; font-weight: 700; }
+.impressoraOff { color: #d03939; font-weight: 700; }
+.thermal-roll {
+  background: #fffdf5;
+  color: #000;
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.3;
+  padding: 12px 12px 18px 12px;
+  border: 1px dashed #b8b096;
+  border-radius: 4px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.12);
+  white-space: pre-wrap;
+  word-break: break-word;
+  width: 350px;
+  max-width: 100%;
+  margin: 0 auto 10px auto;
+}
+.thermal-roll .esc-b {
+  font-weight: 900;
+}
+.thermal-roll .esc-dh {
+  display: inline-block;
+  font-size: 15.5px;
+  font-weight: 900;
+  line-height: 1.3;
+  margin: 2px 0;
+}
+.thermal-roll .esc-big {
+  display: block;
+  font-size: 18.5px;
+  font-weight: 900;
+  line-height: 1.28;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.thermal-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0ece1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  max-width: 350px;
+  margin: 0 auto 4px auto;
+}
+
+/* ============================================================================
+   LAYOUT EXATO DE DELIVERY DO EICHEFE GESTÃO
+   (entregasNovo.tpl, entregasKanban.tpl, cabecalho.tpl, enderecoDiskEntregaTemplate.tpl)
+   ============================================================================ */
+
+/* Barra de Informação / Cabeçalho do Terminal Gerente (#englobaBarraInformacao) */
+#englobaBarraInformacao {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #d5d8de;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+#englobaOpcoesTipoVenda {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.cadaTipoVenda {
+  min-width: 78px;
+  height: 58px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: linear-gradient(to bottom, #f9f9f9 0%, #e4e4e4 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px 10px;
+  user-select: none;
+}
+.cadaTipoVenda:hover {
+  border-color: #d61576;
+}
+.cadaTipoVenda.tipoVendaAtual {
+  background: linear-gradient(to bottom, #ff7bc0 0%, #d61576 100%);
+  border-color: #b00e5e;
+  color: #fff;
+}
+.tituloCadaTipoVenda {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.qtdMesaAberta {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+.eichefe-shortcut-box {
+  height: 58px;
+  min-width: 82px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #ffffff 0%, #ededed 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+  color: #333;
+}
+.eichefe-shortcut-box:hover {
+  border-color: #f60e82;
+  background: #fff5fa;
+}
+.eichefe-shortcut-box .key-hint {
+  color: #f60e82;
+  font-weight: 800;
+  margin-left: 3px;
+}
+.eichefe-shortcut-box .sc-icon {
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+/* Kanban de Entregas EiChefe (#englobaEntregasKanban) */
+#englobaEntregasKanban {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+#englobaEntregasKanban > .kanban-col-eichefe {
+  flex: 1 1 32%;
+  background: #fff;
+  border: 1px solid #e2e5ec;
+  border-radius: 8px;
+  padding: 12px;
+  min-height: 340px;
+}
+@media (max-width: 1024px) {
+  #englobaEntregasKanban { flex-direction: column; }
+  #englobaEntregasKanban > .kanban-col-eichefe { width: 100%; }
+}
+.kanban-titulo-eichefe {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f1f2f8;
+}
+.kanban-titulo-eichefe .t-label {
+  font-size: 16px;
+  font-weight: 800;
+  color: #252c38;
+}
+.kanban-titulo-eichefe .t-badge {
+  font-size: 14px;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+.kanban-titulo-eichefe .t-badge.preparo {
+  background: #EFE8FA;
+  color: #7A4CF5;
+}
+.kanban-titulo-eichefe .t-badge.delivery {
+  background: #F6E6F0;
+  color: #D03982;
+}
+
+/* Container e Cartões de Entrega (.cadaDisk / .bordaDisk) extraídos do main.2a5b5375.css */
+#englobaCadaMesa, .englobaCadaMesaGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: flex-start;
+}
+.cadaDisk {
+  width: 156px;
+  min-height: 236px;
+  border-radius: 5px;
+  margin-right: 2px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  background: linear-gradient(to bottom, #FFC97B 0%, #FBEDDA 100%);
+  box-shadow: 0 1px 3px rgba(0,0,0,.12);
+  font-family: Calibri, Arial, sans-serif;
+}
+.cadaDisk.cadaDiskEntregador {
+  background: linear-gradient(to bottom, #FEFEFE 0%, #FFC6C6 100%);
+}
+.cadaDisk .bordaDisk {
+  width: 154px;
+  min-height: 234px;
+  margin: 1px;
+  border: 1px solid #FF9901;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 4px;
+}
+.cadaDisk .bordaDisk:hover {
+  border: 1px solid #FF0000;
+}
+.cadaDisk .bordaDisk.entregador {
+  background: linear-gradient(#FECDCD, #FE9F9F);
+}
+.cadaDisk .bordaDisk.pedido-pronto {
+  border: 2px solid #479a4e;
+}
+.cadaDisk .bordaDisk.pedido-pronto:hover {
+  border-color: #1e6c17;
+}
+.cadaDisk .bordaDisk .englobaTelNome2 {
+  width: 100%;
+  height: 58px;
+  position: relative;
+  cursor: pointer;
+}
+.cadaDisk .bordaDisk .englobaTelNome2 .englobaNome {
+  font-family: Calibri, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+  margin-top: 4px;
+  color: #111;
+  line-height: 1.15;
+  padding: 0 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cadaDisk .bordaDisk .englobaTelNome2 .englobaNome .bairro-sub {
+  font-size: 12.5px;
+  color: #333;
+  font-weight: 700;
+  margin-top: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cadaDisk .bordaDisk .englobaTelNome2 .englobaTelefone {
+  font-family: Arial, sans-serif;
+  font-size: 13.5px;
+  color: #FF6600;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  font-weight: bold;
+  top: 38px;
+  left: 0;
+  padding: 0 3px;
+}
+.cadaDisk .bordaDisk.entregador .englobaTelefone {
+  color: #900;
+}
+.cadaDisk .englobaNumeroDisk {
+  float: right;
+  margin-right: 2px;
+  background: #FF6600;
+  border-radius: 5px;
+  padding: 0px 5px;
+  color: #FFF;
+  min-width: 20px;
+  font-size: 12px;
+  line-height: 17px;
+}
+.cadaDisk .bordaDisk .linhaSepara {
+  width: 146px;
+  border-top: 1px solid rgba(0,0,0,.1);
+  margin: 1px auto;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega {
+  width: 148px;
+  margin-left: 3px;
+  margin-top: 2px;
+  height: 98px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega > div {
+  width: 49px;
+  height: 48px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color .12s;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega > div:hover {
+  background-color: rgba(255, 153, 0, 0.22);
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega .botaoTempo {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAvCAYAAAAb1BGUAAAC/UlEQVRYhe1Y23WbQBC9s86/1IHUgWFVAOrA7sDuQHIFRBXEqUCkAisViBTAog4sV2C5ADP5gFWG1bJCfuVH9xzO4Syzc+e9AKEfBgCmzRV1yGwA5AB+99TZi3QJ4BkA97yeAaTvJU5PJPUZcRUiIM/aAMAKdYgl8mZ906FrCuAah2m5B3AXMkJijbYHDwBGfTcDSDw6eqVhhn5hs3Iho1LHgJsQ8aUjnARkl41MMKeOAc8NhxcyVO+uVgFrKDccB0iEQPmBxEBdwI8IhL8UD4+F8i2Qzj3KB6OuBx8M6eAlACjUvWmRvVHxAHU+Qx0ide85H9CvwoHa4oGHWHr1ENh7UHhyo6tY4gb+lpH7g+3kyLUWLPkM/uHh69mlZ01ihHbbSq6DBTu5lh5yN7zu5fPYptS2V5DcWtoVui4DukZn0uiz6Twg75vzLgOCM1vA29KnVLs0YHaCPNAeNGug7vNcCEx7KnoB8BPAnxPI5TzZc37VhJPzvVVTMoenhLIv7IzwOigffsapJt8FvQUqvf+s87zTMVmNfQw4lp4B2p3UNYj2SB1h36QD/nnTZYBvGPV6T3ANWONw1s+adZ8nCdqVffT93YUsQGnEFfxTcNTscb09dsp14grv+2Ip30psYb/VTiH9kG81CXvahY7UNfofMmec8fXY/xzQWqcAhs21ZeZMKXXPzBsAMMYstNY/iGhTFMUvAIjjeKSUyqqqulVKTZk5AjBk5u9lWT7FcZwQ0TWAndUhyZW9McYsmHkFYGuMWZRl+QRgaIxZ2E1EFEG8kRDRvLkdM/OYmVdENFdKZZPJZKCUmhtj7uz+yWTSakWFAJh5rLVOnU15HMeJNYaZc8/WXVVVkY1aoytn5rEU+hYiJ6JtURStUFVVtVJK3UdRNET9j2Yo5G+ZeUtEt+j+ZbZH0HMfmnTg4uJiDufDkpkzY8yiKIoXAFsimgrDpkS0DZHvHIGd1jptihE2jK+vrxkz50VRvDTydt/OMTLTWv+wxWwL9Ywz/gv+AsH3vWMDMM25AAAAAElFTkSuQmCC) no-repeat center center;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega .botaoCliente {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAuCAYAAABNhcu5AAACl0lEQVRYhe2YQVKjUBCGv/fGvdlZsglLdwbeAZIb6A2SG8zcQD3BeAP1BHoDceeGkJzAZAW74M4VPQt4NSQFCcGhZqzJX9ULHt3NR/NouoB2ugCeASnZCvgJHLfMubceNwA2LQLOu4a42gFh7blLiH5DCGtXXYHseiRV1v/TEMctIDqpykVLkKjpBXRDv0Fj5JZxTUE615cDSVvmXzR1bAoya8fROm6rVuz/1oy7AGna3q29dQEBeVPbpyrDrkAgb9lNYDp5JJs6Jy97HcT3NknVJ4DGwKR0vACugeUnch709TRkfUi+axh3TD4C2LhHPjHH1s0gj2yf1M83IKytipyV2vbWrIBezbkUuAeeSms94JL1N6kqzgXet/isaUy7iayJVfaZuq9v24msiS7/FZDK3H9jQqvcd19uVOxcdSCLDq/Zdv496D9X5bfG87x+FEVLz/P6Wus0DMN3u661TgGyLLONKY2iaO553jCKopeyX8kHAK31LMsyl6KXaK1nNvdR2dH3/TvyXd0zxgQi4mZZFgAvAEqpSXGM1vpaRAKlVArMtdaBMWYShuGD9VNKjQBXKeWKSJBl2UJrfSsiQXEzKTBfAzHGjEVkMZ1Ob0pgtf83RCQo+wIBMDHGPIkIANPp9MbzvCEwsr7GGDbiWAMREdeSNpFSauT7PiIS2EcC3IvIj12x9gbLQEf17ttVURHCMHzwff+NvDq12lWRQGt9a4wZZVnW4/eGGnieh9Z6ZkteyC3KnkZRNLeLSqlrEbklH5wqVcStbdZv9mSSJMuTk5NEKXWplBoAr+Qb96zYbB/krX8BpEopt7CzOI5fHMchjuN5HMdzx3E+ROQ1SZL309NTgDRJkiWA4zgAA5vTrh900C79ApK4ndz2P1FDAAAAAElFTkSuQmCC) no-repeat center center;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega .botaoEntrega {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAvCAYAAABg8NNYAAADNElEQVRYhe1Y23XiMBC9A/k3HcBJA36oANgKIBUk6YCtwKSBxFsBbAM5SQM8CrDkNBBcQdYNoNkPLGKMyWLMmrN7uOfMh63R6ErjeViE6rAAjAA4mXcxgADA2wnsV8IYABfI+JykAMBGMTEj7TrJzHKiLMti3/f5/f2dtdastebb21tDblkw569h53R839+QykqGYF4OBpUk5+eenY+Pj0Gr1dpRjOMY19fXcwDz3NBDyTVLwwKgut1u4akZwZkCQwFgy7L2EpNSZl35VBexfmZRfnx8LCTX7/fz35pVBzk/tyj3+32eTqc8nU75+fmZbdsuCoTuWcgdKKXJNY4gFx0xp8q80lAod2q1Rmy3BLFfqCkYDKzMwl8RW6JkVTgVGOvCPy4gucQ6t5lNHIWy5StPzsy3AWRrWILPXi6rVxtMejCuK3JpG2d065+i9qkKuapuHWLbnXnMUzmLW0+pt4OrYydm8ITtnxuDCYCfVQyfgpwDoFfwfl7V8DG1tTb8l+RsHNZltLFOyLVjjHWi3Vdfl/gsY2eBjf2JeIyK3W/Vb+4N+90WA1hUMX6KgNhHrnLne4o8F2C3hCU4QZ674IIL/hVsOlTXdbtENCGimJljKeW9EGLGzHMp5UM63gPQIiKHmR0iigBMmLlDRAMAidEXQsyMba31SCm1SG0MiKjDzImU8h4APM/zAbSklN+z5PJ5bhKG4dblHhE5QghLaw0AMAaEELMwDL8Z41rroVJqIYRQSC8IzXi6ebvRaAzDMLzZOSEiBwXt/lVOqed5Hph5rpRapLsOiCjAurPdCyK68zyvh0zFSE8EUsoHIhporQMhhMXMQyJKwjD84bqujTRhO47Tj6Lo1czfKl/GJYYYACilFkTUSV36FbkIQGe1WgXmnZTyQUq5c83KzHMAd2ZT6YaSZrN5l9U7qLZqrUfG2Bc6kZTyvtlsjorGmfml0WgMgfWGU0Igop7WOtZaxwBaQojNvUrWrQkR9YQQPQBJGIY3zBwZY57nvRBRnFlsU9jTIDLunLiuazNzZIJitVoFSqlXIcQLMwee5yXMHLuu2wYwMZ5yHCfA+n9k49oLLqgTvwGZ5ieHfop0pgAAAABJRU5ErkJggg==) no-repeat center center;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega .botaoImprimir {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAyCAYAAADBcfKuAAADlElEQVRoge2Yz4scRRTHP68TI0hgN4goetgcQvCiO72FBw9mA0qEvbggXry4HvTiZf0DoutBD3rZP2EkBCEkMII5eMrmZESmuxdBiGAYEaMR1PUHRtHu56GqYm3bPdM9MzsenA80tfXq1atv/a5ZmDNnzkx4EvgDyCf4vgaONm1QWgp8DzgDfAMULeuWOQKsATdGOY4SebiBzzT5s8pYJ0CAH4ZVPCAE+AQ7wnc4XOP8EXAL+B1Q/umMuG+SqR7Gg+676Q1RjWPHCVwDYuAatkPLwKND6k2Lh8NMXWO5S4+59AR2RD33TlnUUEaNyHngNnb0cuxO/BX46YB17aNuTYZcD/7+2X0z5aDX1lRoMpJlbmE30rjn51PAPW0qtBX5PPBZyzplXgOeBc42rdBmuu9mcoGeS8Chps51It+ssGmFbRLuG1J2LczUTfdb2LPwTGAr99y/hKo4yuhbyQ/QoZJtDfhtRN2Z8R3waRPHcXa352XsIV9GgFcmiPsvJhF5GdipsE/9addW5G3gOeAD7Ov6rhH+DwFfYNfYXxWxGtFW5A1gBStyF7i/wkeAB7CnwXXgc2yHfgl8Trq00RXbVmR4DC2P8D0LDICXgI8D+2Xs7v8RONWk0YO8u09gp3g3sH0IGOwr6rGmgWb5wLiIHf2bWKGNmZXIc8ATwFfYNd2KcUQeb+n/DvA08C0tpjik7cY5gh2Jx7G71hP+WPN5H3sVO4Ktpjik7cF7Erjg6h1j+Ewo8D32bn5kLHWOcW+HFxn+igl5e8w25syZ8/8ijuNlly4ZYxZKZXdscRwvx3G8WipfDW1l/yZtlWN49h3GURRtu7QL9LzdGLMgIpmqbgKISE9EThtjrnjBURRtici6MSaN43hJRDaKoui4sixsfGVl5fUoijIXK/TbF6NSZIiqDgLHjVC0iAySJHkjz/NtEVl3/jtJkryqqhml+11VuyKyEdRfp+KnR12MYSLDwBtFUfSC4kXX805RFJn3McZcAfCjFDAQkUVjzIIx5gVV7VFNZYxakWmaXhWR051O5xlVzURkr6IjvSzL3nfZblEUmyKy2O/3q/412APWgU1V7dY0Wxlj1FOtF0XRtqpul+x7aZpeTdM0fHWTpumuqu5VLf5+v/8usAkM0jT9sq7Bqhjlp1q3nIoISZLsxnG8pKo7pXLPwJep6hZw3OUHzrYDkOf5logMwhhVfj5GXUfmzPmv+RswyUJeBgIp4wAAAABJRU5ErkJggg==) no-repeat center center;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega .botaoPagar {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAuCAYAAADUfRIMAAACrUlEQVRYhe2X33HbMAzGP/D6Hm0gbRBSGqDuBFEniDNB3AniTBBv4GSCZIM4A5i0J7AyQTUB0QeBDcOTLnb956X+7nCUSQg/AKKoM7CfLgG8yngSXQL4DYBlPDo4AB2AXMajgmPghcxdHBN8AWCTAOO1g4PjoPkXPn1J7QX8qoq+9h8VeBDwPs/pn8CH2Bgx+CTANM5JgYwtKn0+ABD4SPxawPOw8C1xnAOoxdYylwMYAdBiqRqxRwDvUZzgvwZQAJiKz1sKZMkMMr7K3La2QdepNE7vLk6Bc+wGSy18COLWfgLeJkDsCQwWPntz9OiqZ/EQUJaCBpXusENBv1QMDu0JLdq1reH93EoBnAbYbAm7A/AQJdsrGgA/AmgBZDK3EmvF+lSge5+L6N6++P2TUZYrubkYyjrRAt1BERLYGRqybSP4UJVhXicJDsUfhG7QPZ9X7LaJHvCxGXs1lMkdgAm66hboKg2VpGrFJ6yP5XoB4McuUKA7tqYCDwqbKdUoun6Re957/HbSLT4O8r6WPovPyf5enHXWf6S/h4Mx5pKIJgDAzI/OuTdjzHciGltrb4JfVVW3AEbM3AY/ACjLch7/rqrqmZlXADJr7a8YqqLrDEBjrb1RSs0AgIjGRFQYY/IAZOZsuVz+lEQaSTgnooKIxnE8a+29rH8fgsZqBZp576dKqVrma2vtvTEmjwMppWrv/ZSIsihGJp0qQnK9UCIalWV5572faK2vmDk410iklNJRZTUAMHOjtb6KfApmbpxzn87hT1BmXlhr751za6VUzcwvYc0YkzNzU1XVtXPu3Xu/iucl6VXUlXa5XD7Fjyco/lvRElHchiZsCq31DIBWSk2YeVaWZUFE2ns/Y2YNYOacWwN4K8tyJAWsAMB7P1NKjQA8pd0666y99AeOgKNZgZ+95AAAAABJRU5ErkJggg==) no-repeat center center;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega .botaoFechar {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAuCAYAAACmsnC6AAACo0lEQVRYhe2XwXXaQBCGvxG5w9GcrA7Qai+5oQ6gA1wCHYArMK4gpIKQCmwXgIQrCLnJp+AGtDloFwuBAdmyyXvhf2/f24GZX/+OdmdHsIkBYN45/lieo/GlZPslewosqxACV3Z8rxi3xojtlY0qctzZcTS8I3zGQAJ0K4qpVQRAANwDN0DzVCIchsCibiFVRUC+eYNTi6gdHy3iG/mm7ny2iDEwsXOf/NUt2HPUy8XqPRiwWeyCkj0GIvJC9nsf0a5itWuUa0bnyDhX1nvF4LpeR6uir/8RIlYVfIfAbfGHuvbEI/n7LmPCS01ZAX3goexU5+l4sMO3D3zgJUMLK2ZLQN0iHKbkKwaYkWcjYs+JqPOI7sLtYZf/pGwfhX9CxFv3RK1X+VtFTA67vF3E8sg412G9hn3/HYUe+SVT5QL7EDTJG5KTinDoAr9OLQLyrJT7jE8X4dAh7xcNB3rGM844oy403ERr3by4uPjabrf9drvdStP0SSnVtbafpum6PVNKXaZp+mznnTRNn8rzsl3gbxV9oNBPZFkWeJ43FpHI87wAQESmIhKJSGRJu1rrHyJypbW+A/A8b32jFuda64GIzHbwr2MdNm5RY8x9HMfXzhaR5Xw+X9v2IVEcx8/ANXtgjIlEZBIEQW+xWPws8odheKOU6iRJ8riRCYsrrfWd1npgg/wwDEfOBlbz+fy59DA/DMNRGIYjY4xvs9C0q595ntcv8wMtJ2ArE8C0uPJyJnah6KO1juzPfRFpkX/89rXWwyzLAKZW2LjIcajHbCmlukqp9YXlshIEQe/1MPpZlg3jOL4WkSEv3yEkSfJojFkVOYsilsaY+yKTMWbmNqZS6hLou/Q3Gg33ETwthLj5LEkSd5rc5lzzG2PG+1Z+xhl/AeKaI2629c0tAAAAAElFTkSuQmCC) no-repeat center center;
+}
+.cadaDisk .bordaDisk .englobaBotoesEntrega .inativo {
+  opacity: 0.32;
+  cursor: default;
+}
+.cadaDisk .englobaTipoDelivery {
+  width: 100%;
+  margin-top: 2px;
+}
+.cadaDisk .englobaTipoDelivery .tipo-delivery {
+  border: 1px solid #b33a0c;
+  border-radius: 3px;
+  margin: 0 4px;
+  color: #b33a0c;
+  background: #FBEDDA;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  text-align: center;
+  padding: 1px 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cadaDisk .bordaDisk .englobaValores {
+  width: 100%;
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+.cadaDisk .bordaDisk .englobaValores .valor {
+  text-align: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  background: #647881;
+  padding: 3px 0;
+  border-radius: 3px;
+  width: 72px;
+}
+.cadaDisk .bordaDisk .englobaValores .troco {
+  text-align: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  background: #9FAFB7;
+  padding: 3px 0;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 72px;
+}
+.cadaDisk .bordaDisk .englobaValores .troco:hover {
+  filter: brightness(.92);
+}
+
+/* Painel de Cadastro / Finalização de Delivery idêntico ao modalDeliveryDadosCliente do EiChefe */
+.eichefe-disk-panel {
+  background: #fff;
+  border: 1px solid #d4d8df;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.07);
+}
+.eichefe-disk-header {
+  background: #2f3542;
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.eichefe-disk-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+.eichefe-disk-body {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+}
+@media (max-width: 900px) {
+  .eichefe-disk-body { grid-template-columns: 1fr; }
+}
+.eichefe-bina-col {
+  background: #f8f9fb;
+  border-right: 1px solid #e1e4ea;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.eichefe-bina-top {
+  text-align: center;
+}
+.eichefe-bina-phone-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  color: #28a745;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: 6px auto;
+  border: 2px solid #28a745;
+}
+.nome-cliente-novoDisk {
+  font-size: 16px;
+  font-weight: 800;
+  color: #252c38;
+  margin: 6px 0 2px;
+}
+.telefone-cliente-novoDisk {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff6600;
+  margin: 0 0 8px;
+}
+.log-cliente-novoDisk {
+  background: #fff;
+  border: 1px solid #dfe3ea;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  margin-bottom: 12px;
+}
+.eichefe-finaliza-box {
+  background: #fff;
+  border: 1px solid #dfe3ea;
+  border-radius: 6px;
+  padding: 10px;
+}
+.eichefe-finaliza-box h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #252c38;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+.eichefe-info-venda-table td {
+  padding: 3px 0 !important;
+  border: 0 !important;
+  font-size: 13px;
+}
+.eichefe-addr-col {
+  padding: 14px 16px;
+}
+.eichefe-addr-col h4 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #252c38;
+}
+.eichefe-form-row {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.div-opcoes-cliente {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: stretch;
+  margin-top: 8px;
+}
+.opcao-pedido {
+  border: 1px solid #d5d9e0;
+  border-radius: 6px;
+  width: 72px;
+  padding: 6px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #fff;
+  text-align: center;
+  font-size: 11px;
+  color: #495057;
+}
+.opcao-pedido:hover {
+  border-color: #28a745;
+  background: #f3fbf5;
+}
+.opcao-pedido .op-ico {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #adb5bd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.boxBtnDisk {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+/* Modal de Item com Observação estilo EiChefe (janelaAdicionarPizza / acrescimos.tpl) */
+.eichefe-item-modal {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  animation: modalFadeIn 0.15s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.obs-quick-chips .m-chip {
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
+.obs-quick-chips .m-chip:hover {
+  background: #e2e6ea !important;
+  border-color: #adb5bd !important;
+  color: #212529 !important;
+}
+.edit-item-obs:hover {
+  text-decoration: underline !important;
+}
+
+/* ---------- Módulo de Funcionários (Estilo Exato EiChefe Gestão) ---------- */
+.emp-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.emp-kpi-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--primary);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.emp-kpi-card.ok { border-left-color: var(--success); }
+.emp-kpi-card.caixa { border-left-color: #007bff; }
+.emp-kpi-card.comissao { border-left-color: #fd7e14; }
+.emp-kpi-card .emp-lbl {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.4px;
+  font-weight: 700;
+}
+.emp-kpi-card .emp-val {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.status-pill.ativo { background: #d1e7dd; color: #0f5132; }
+.status-pill.inativo { background: #e2e3e5; color: #41464b; }
+
+.badge-cargo {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.badge-cargo.gerente { background: #f6edfe; color: #7a4cf5; border: 1px solid #d9c2fc; }
+.badge-cargo.caixa { background: #e7f1ff; color: #0056b3; border: 1px solid #b8daff; }
+.badge-cargo.garcom { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.badge-cargo.atendente { background: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.badge-cargo.cozinha { background: #e2e3e5; color: #383d41; border: 1px solid #d6d8db; }
+.badge-cargo.entregador { background: #f6e6f0; color: #d03982; border: 1px solid #f0bcd7; }
+
+.perm-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  margin-right: 4px;
+}
+.perm-tag.on {
+  background: #e7f5ea;
+  border-color: #b1dfbb;
+  color: #1e7e34;
+}
+
+.emp-perm-panel {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 14px;
+  margin-top: 10px;
+}
+.emp-perm-panel h4 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #495057;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.emp-perm-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+.emp-perm-row:last-child {
+  border-bottom: 0;
+}
+.emp-perm-row label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   EICHEFE GESTAO - MAPA E SELECAO DE MESAS (terminalMesas.tpl)
+   ========================================================= */
+
+.eichefe-salon-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Barra Superior de Informa��es (cabecalho.tpl + terminalMesas.tpl) */
+.eichefe-salon-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 8px 12px;
+  flex-wrap: wrap;
+}
+
+.eichefe-salon-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.eichefe-salon-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.eichefe-salon-badge.total { background: #e9ecef; color: #495057; border-color: #ced4da; }
+.eichefe-salon-badge.livres { background: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
+.eichefe-salon-badge.ocupadas { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+.eichefe-salon-badge.prontos { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+.eichefe-salon-badge.fechamento { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+.eichefe-salon-badge.active {
+  box-shadow: 0 0 0 2px #ff6600;
+}
+
+/* Caixa N�mero da Mesa R�pido - Mesa (DEL) */
+.eichefe-quick-mesa-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 2px 6px;
+  gap: 6px;
+}
+.eichefe-quick-mesa-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #333;
+  text-transform: uppercase;
+}
+.eichefe-quick-mesa-label span {
+  color: #F60E82;
+  font-size: 10px;
+  margin-left: 2px;
+}
+.eichefe-quick-mesa-input {
+  width: 55px;
+  height: 28px;
+  border: 1px solid #adb5bd;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+}
+.eichefe-quick-mesa-input:focus {
+  outline: none;
+  border-color: #029CC1;
+  box-shadow: 0 0 0 2px rgba(2, 156, 193, 0.25);
+}
+.eichefe-quick-mesa-btn {
+  background: linear-gradient(#029CC1, #017A98);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+.eichefe-quick-mesa-btn:hover {
+  background: linear-gradient(#017A98, #029CC1);
+}
+
+/* Controles de Busca e Altern�ncia */
+.eichefe-salon-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.eichefe-salon-search {
+  width: 170px;
+  height: 30px;
+  padding: 4px 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.eichefe-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #495057;
+}
+.eichefe-toggle-btn:hover {
+  background: #e9ecef;
+}
+
+/* Container do Grid das Mesas (englobaMesas) */
+.englobaMesas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+  max-height: 520px;
+  overflow-y: auto;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+}
+
+/* Card Individual da Mesa (cadaMesa) */
+.englobaMesas .cadaMesa {
+  width: 86px;
+  min-height: 132px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.englobaMesas .cadaMesa .bordaMesa {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #029CC1;
+  background: linear-gradient(#f8f9fa, #ffffff);
+  padding: 3px 2px;
+  box-sizing: border-box;
+  transition: all 0.12s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.englobaMesas .cadaMesa .bordaMesa:hover {
+  border-color: #ff0000 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+.englobaMesas .cadaMesa.selected .bordaMesa {
+  border-color: #ff6600 !important;
+  box-shadow: 0 0 0 2px #ff6600;
+}
+
+/* Estados da Borda e Gradiente (main.2a5b5375.css) */
+.englobaMesas .cadaMesa.mesaLivre .bordaMesa {
+  border-color: #029CC1;
+  background: linear-gradient(#f4fbfd, #ffffff);
+}
+
+.englobaMesas .cadaMesa.mesaAberta .bordaMesa {
+  border-color: #CA7C0B;
+  background: linear-gradient(#FBDEB2, #ffffff);
+}
+
+.englobaMesas .cadaMesa.mesaPronto .bordaMesa {
+  border-color: #28a745;
+  background: linear-gradient(#d4f4db, #ffffff);
+  box-shadow: 0 0 6px rgba(40, 167, 69, 0.35);
+}
+
+.englobaMesas .cadaMesa.mesaFechamento .bordaMesa {
+  border-color: #dc3545;
+  background: linear-gradient(#FECDCD, #ffffff);
+}
+
+/* Nome do Funcion�rio / Operador no Topo da Mesa */
+.englobaMesas .cadaMesa .nomeFuncionario {
+  width: 78px;
+  height: 17px;
+  margin: 1px auto 2px;
+  background: #ffffff;
+  border-radius: 4px;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #495057;
+  text-align: center;
+  line-height: 17px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.englobaMesas .cadaMesa.mesaAberta .nomeFuncionario {
+  color: #855307;
+}
+
+/* N�mero Gigante da Mesa */
+.englobaMesas .cadaMesa .numeroMesa {
+  width: 78px;
+  height: 34px;
+  margin: 1px auto;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 34px;
+  text-align: center;
+  border: 0;
+  display: block;
+}
+
+.englobaMesas .cadaMesa.mesaLivre .numeroMesa {
+  background: linear-gradient(#F2F2F2, #DDDDDD);
+  color: #555555;
+}
+
+.englobaMesas .cadaMesa.mesaAberta .numeroMesa {
+  background: linear-gradient(#FFFFFF, #FBDFB4);
+  color: #000000;
+}
+
+.englobaMesas .cadaMesa.mesaPronto .numeroMesa {
+  background: linear-gradient(#FFFFFF, #c9efcf);
+  color: #1e6c17;
+}
+
+.englobaMesas .cadaMesa.mesaFechamento .numeroMesa {
+  background: linear-gradient(#FFFFFF, #FECDCD);
+  color: #990000;
+}
+
+/* Linha de Mini-Bot�es de A��o (quadros CLI, M, V, IMP) */
+.englobaMesas .cadaMesa .quadros-row {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin: 2px auto;
+  width: 78px;
+}
+
+.englobaMesas .cadaMesa .quadro-btn {
+  width: 17px;
+  height: 17px;
+  line-height: 17px;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 3px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.englobaMesas .cadaMesa .quadro-btn:hover {
+  filter: brightness(1.15);
+}
+
+.englobaMesas .cadaMesa .quadro-btn.cli {
+  background: linear-gradient(#8866AB, #430D7B);
+}
+.englobaMesas .cadaMesa .quadro-btn.m {
+  background: linear-gradient(#A90101, #c36969);
+}
+.englobaMesas .cadaMesa .quadro-btn.v {
+  background: linear-gradient(#003366, #5d7d9d);
+}
+.englobaMesas .cadaMesa .quadro-btn.imp {
+  background: linear-gradient(#ff6600, #ff9c5b);
+}
+.englobaMesas .cadaMesa .quadro-btn.pronto {
+  background: linear-gradient(#1e6c17, #479a4e);
+}
+.englobaMesas .cadaMesa .quadro-btn.desativado {
+  background: linear-gradient(#e0e0e0, #cccccc);
+  color: #888;
+  cursor: default;
+}
+
+/* Valor / Tempo da Mesa */
+.englobaMesas .cadaMesa .valorMesa {
+  width: 78px;
+  min-height: 20px;
+  line-height: 20px;
+  margin: 2px auto 1px;
+  border-radius: 4px;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  text-align: center;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.englobaMesas .cadaMesa.mesaLivre .valorMesa {
+  background: linear-gradient(#6c757d, #adb5bd);
+  color: #f8f9fa;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.englobaMesas .cadaMesa.mesaAberta .valorMesa {
+  background: linear-gradient(#8a9ea9, #6c757d);
+  color: #ffffff;
+}
+
+.englobaMesas .cadaMesa.mesaPronto .valorMesa {
+  background: linear-gradient(#28a745, #1e7e34);
+  color: #ffffff;
+}
+
+.englobaMesas .cadaMesa.mesaFechamento .valorMesa {
+  background: linear-gradient(#dc3545, #990000);
+  color: #ffffff;
+}
+
+/* Nome do Cliente Embaixo da Mesa */
+.englobaMesas .cadaMesa .nomeClienteMesa {
+  width: 86px;
+  font-family: Calibri, Arial, sans-serif;
+  font-size: 10.5px;
+  color: #333;
+  text-align: center;
+  margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Modal Detalhes da Mesa Ocupada (EiChefe) */
+.eichefe-mesa-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+.eichefe-mesa-modal-card {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 10px;
+}
+.eichefe-mesa-modal-card h5 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: #495057;
+  text-transform: uppercase;
+}
+.eichefe-mesa-modal-items {
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background: #fff;
+  padding: 6px;
+  margin-top: 6px;
+}
+.eichefe-mesa-modal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  border-bottom: 1px dashed #eee;
+  font-size: 12.5px;
+}
+.eichefe-mesa-modal-item:last-child {
+  border-bottom: none;
+}
+
+/* =========================================================
+   ABA PEDIDOS / VENDAS (detalheVenda.tpl do EiChefe)
+   ========================================================= */
+.pedidos-header-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.pedidos-filters-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pedidos-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.pedidos-summary-card {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+}
+.pedidos-summary-card .label {
+  font-size: 11px;
+  color: #6c757d;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.pedidos-summary-card .val {
+  font-size: 18px;
+  font-weight: 800;
+  color: #333;
+}
+
+/* ==========================================================================
+   TELA DE PAGAMENTO E FECHAMENTO DE CONTA - EI CHEFE (pagar.tpl / valoresVenda.tpl)
+   ========================================================================== */
+
+#pagamentoCor {
+  width: 100% !important;
+  max-width: 960px;
+  box-sizing: border-box;
+  background: linear-gradient(#FFFFFF, #EAEAEA);
+  border-radius: 5px;
+  padding: 12px 14px;
+  color: #333;
+  font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
+  margin: 0 auto;
+}
+
+.englobaTitulos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.englobaTitulos .tituloPagamento {
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.englobaTitulos .tituloPagamento .subInfo {
+  font-size: 13px;
+  color: #666;
+  font-weight: normal;
+}
+
+.englobaTitulos .fechar {
+  cursor: pointer;
+  color: #d03939;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  user-select: none;
+}
+.englobaTitulos .fechar:hover {
+  color: #a00;
+  text-decoration: underline;
+}
+
+/* Payment Methods Grid */
+#englobaFormaPagamentoFechaVenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.cadaFormaPagamento {
+  width: 77px;
+  min-height: 126px;
+  background: linear-gradient(#E6E6E6, #fff);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 2px 6px 2px;
+  box-sizing: border-box;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.cadaFormaPagamento:hover {
+  background: linear-gradient(#fff, #E6E6E6);
+  border-color: #0099CC;
+}
+
+.cadaFormaPagamento.formaSeleciona {
+  background: linear-gradient(#fff, #E6E6E6);
+  border: 2px solid #0099CC;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento {
+  width: 62px;
+  height: 60px;
+  border: 2px solid #ccc;
+  background: linear-gradient(#ccc, #EAEAEA);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: all 0.15s;
+}
+
+.cadaFormaPagamento:hover .iconeFormaPagamento,
+.cadaFormaPagamento.formaSeleciona .iconeFormaPagamento {
+  background: linear-gradient(#A2A2A2, #666666);
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .dinheiro {
+  width: 48px;
+  height: 52px;
+  background: url('/media/botoesPagamentoFormas.png') no-repeat 0px 4px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .cheque {
+  width: 48px;
+  height: 52px;
+  background: url('/media/botoesPagamentoFormas.png') no-repeat -48px 4px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .credito {
+  width: 49px;
+  height: 52px;
+  background: url('/media/botoesPagamentoFormas.png') no-repeat -97px 4px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .debito {
+  width: 49px;
+  height: 52px;
+  background: url('/media/botoesPagamentoFormas.png') no-repeat -97px 4px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .sodexo {
+  width: 49px;
+  height: 52px;
+  background: url('/media/botoesPagamentoFormas.png') no-repeat -97px 4px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .pix {
+  width: 38px;
+  height: 38px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAZ5QTFRFAAAAAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uAL2uvYOS4AAAAIp0Uk5TAAtbiY9mHDff//FXAUjz/XNB+3xD9nFO7XcCP/dTfxOmwu7juz4WmPJjWMTDqkkD/OUuDGq0v8BoBfn+bLiAb2cpEqwGaXs8dQ36dGLSvCYEl4vL6LaO9NcQx6IXnBjWT4pc78zGkgdHIQ6ZTNkZ2KXRK8WW4OHNbUUbngniyDujWl+VVX4ffYU5E7BD4wAAAedJREFUeJxjYEAFjEzMLKxsDHgBOwcnEHBx8+BRw8vHCQb8ArhVCULVcHIKCeNSJSLKCQf8YthViUtwIgF+SSksaqRR1HByykhimiXLx4kG+OXQVckrKCqhqVFWUcW0T02dH0mNhiYjmryWoraOrp6+pgFcjaGRsYmpmbkwwvUiYDeLWvBIwlQZClrqgsw1gLue1woiYy3GYGMNZkkYWdpCXWbHg+Yva3t9BxkgzeHo5Ax3v7ALUA07kt/5XaXcZDg53I2dEWJCHgwMnobI/vbylvLxdTT2Qxaz8mdgQg0dL5sAHjVnVLFAhiBONBCsHoImEsoQhq4oPIIfQxErqgA/SySDURSqWDRDDBeKGvUA6diYuHgUMXYGhgQhJIHEgKRkzhT/uFQksTRgOPEIIFSlpWckA6mUmEyEqtgscJBbwFyazZADiaHcvMh8qFhBACTueDRlwHYzM3CHQ6UKiyKLwYySAFgq4JEsLSsrr3CpDIdbUphXxRLBwVFdg0hPPOnpLjwu9jJIzq11l5KytETNDPKJ1fmogShTp16PnngFhDjRQYMLuiKeRhlUJQYINyOpqkBVVVKDqQYIkPIBJ6c6FnPAZjUh3BWLQw0QuMJUNWO4GQm0gAsWg1bc5oBAW3taWkcnmiAABgRUqTxPr+QAAAAASUVORK5CYII=) no-repeat center center;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .online {
+  width: 48px;
+  height: 52px;
+  background: url('/media/online_pg.png') no-repeat center center;
+  background-size: 38px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .brinde {
+  width: 48px;
+  height: 52px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUQ3MUFFRTg1ODdGMTFFNTg1Mzc4QzJFQjdBRDU2RTkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUQ3MUFFRTk1ODdGMTFFNTg1Mzc4QzJFQjdBRDU2RTkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFRDcxQUVFNjU4N0YxMUU1ODUzNzhDMkVCN0FENTZFOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRDcxQUVFNzU4N0YxMUU1ODUzNzhDMkVCN0FENTZFOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgDhk6gAAAdtSURBVHja7FhLbFxXGf7+c8698/BzPInj2M5DhpiW0EJIURGSF30ICYW2qYrEDtQFQkggVgVBooaUVoJFF0hQUVWCFQghFqgSEpIJLBBdoKgprQJNnLit4/hR2+PHjD33cR78587YNE1mMhESZOE7ujNzz/3//3znf53/P+Scw918qfpbX4QtAHLOIPd8HRTfCNgRcGlsBLViHsqaj/HQo3z38rregbR/cUIsjk8voLsa3SR8YV8/5veVIVMzbgS+wKL2M98VfvUHIjdPlkAf4jF1Qm6fxuGvrECQgzJr56C1l8Zfk/qWq1hfGMVab9fHQ50+40AniNDHmr9qJT7hpHzFvT71HtKb+XS5iKUjB48HUfp1J/AUgxlggDO87CMg96Iw4n36oAWZwFQJhQMa+rHrkIIBQhRA0qtK8/vqTZP4FcpcOCHz+d+IVA6DyPDQIt/3ChKnjMTJWqn/hKnp9zy9YFmsnYw37u15CLnc70jIAZEN0TVy9iD/+Y4jeoQsvpyE6qqj/0yWsoBQ1VlOPntW/kukrJdhh+vH9iKayiMcMHC2Ac6SKyW54GfK2mE25wUBnILFgoX7FK/+B4FzR//50YM/sSRO+oUKJiDJX8aVkKQv5WIzwJo+D+ueUxYzJhTHLOgFsu44wZ4dWq58VRprGDDzOdSvB+j6rIYssYglYoD+qrPQMv+eUZg+M5yBC0qGATrGgglhoqNkzIZTuWdg9Tk/iDC5YIWJRVL4FQt+AtI8rRP6JShkkILNE50mgXtY2Ep/FV+LFN7QyiANiv8wIszltjZ+zgqYyG+l44HR/3IQiJYUBg/UsPfkFIk4PktjzYDQVcUykfXcfR7V6HCTcRzGi6JOTCiLvJ0RAnp9JozrDvBA2yyfGp/LZx5WVqLMLbPiRrGCrU68tHmozIx3yZrY2XUKYXwDSsJWkmozQhhrTrrw8NICmfGBvOXDo3ira5DmH+4DPULQnpAwq01TCi2/czxJ54PUL4/wvEXZ1G6r45oIURcUa8xmkUSbg+ROMuhxQ5ulTNBqG0hZFWdZtaLLGk0V7SnczkzQKH5ES+IIdGrTrpXKt06TEIXCOdCZ+nTPP6sdwc282U366bFvMHhh5bx4Avvoq+/Dr3EsGTTLat/K6GRC9mcxjs4W29AZ6ivvTqA2T+WWZv0jSCvX1LdGcElJp5melYiefIas36Gxw6wS6wyAZsLD/BzwPdFR26Kabr4bsYr3c+OvT/eEDUOuie7D0V/GnmqgsFHqjCbAukGa094zTWstAMw+3it8kv/qwoOYZ9GtBJifrIHS5O9n4tW5Q91nR4mavpFTwrKa2QSb0ieO2aBn8XVGGvdq8zPyJbO298Wh9IzQ49XrwxOVCHzBsm6hI0aNm2wNfxvG2CRxZzksQcZoGxaPCOWOYugx5h4MZyrvhveGy2oJyhAyQNL/74XZqoXVDAtdwJXF1APrEDds85As5icKY4mv+8+nCwEJT2crCnYlHYWxbryy6gzwHM8/SQD7B8wzp3ld99sOQlrVOYtJC9DBi7TCvWlqL88jnSSU2MpaQ1wLUD+6SsIT8zCreQau0UioLfYIZLtKLj1xUH2LU5v9qfsSY+32w+92W3MXsG7WQbFA+QJ4i1OrD7BmzYa9Obf4IidD9lDVaalzEUIbcFlvEJ813N8ye/Jt921m0KzpO+TcRYiO8PtWalB33CqO6oVRji/IfYbxl1azGjFzsmbMQeGvAM2H2mykWQ8IxuwtZl8jheU0WdzdKpBHzQGgd+Lr7ObFLkEKMNRZ+zevFqwfxneDdgHRRuADE7ZJr2mzgESC5dYViaPCdpAWU6Lv3IC7bqd4zaCRiAoCMzM1zG3voTQtPaQlJPvR2YSjF4MENdEh4blhRXd23rMPqZEFTNUccsuB02iUxPzrlPk/Jhj1QeS7dBaLSrgPJjnbb/AizCd+xHv/1uygncU6pyTi+yHQ9a6oMNw8QB7NMrn8+gv7gH1pm1cSSHYX0UyzsXHqujMxF5REbPWsoK16ZD2A3eHTuwMa4ZvMm3I2O883c4cnfqgbQBVN0TN9t1JhNntv7Ytk6OmUNuh7A9hEbjLr12AuwB3Ae4C3AW4C/C/PB9sNpl0h73C/0J15PxhFK0ythVKYFy8U9n8Py/XbOESbKHCtaTwNVrKjVPgjD3kmmduHfYkvrEn0TgAaVnN0J31JJ7OEsSiTLGRmdh35S7FsnxTEI3YQev12h6krzu5zuMSF5q7erJtyi1+L/m98nXh7XoS/zrmBc1z/7Lh3vSL4sY9QOMgzj0r3nfHxKocyo59XPuKOuxS3JPEWFyrIPCNu7v1hGlNYuyaxvCUQrLeQUWdZN3cBRfaH/ueX7lotdkI2fM8zecpdc/z4yf9IU8rmNkBk4Y2NbEn2Yz7WIW65XybQna6jLWN9dtre0BgeTa1jnCn3nu77Pil/z5FNVfO9Xs/l0jquHu46eDaFcDswZF4Ozq5a7u6lyuoELbsujXCcmBI1u1npGobmIpbpPyvANe4vkvN460Hf4twACvP2RIHKWvnwAAAABJRU5ErkJggg==) no-repeat center center;
+  background-size: 32px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .troco {
+  width: 37px;
+  height: 52px;
+  background: url('/media/botoesPagamentoFormas.png') no-repeat -260px 4px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .assinadas {
+  width: 50px;
+  height: 52px;
+  background: url('/media/botoesPagamentoFormas.png') no-repeat -190px 4px;
+}
+
+.cadaFormaPagamento .iconeFormaPagamento .clienteOpcional {
+  width: 48px;
+  height: 52px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAuCAYAAABNhcu5AAACl0lEQVRYhe2YQVKjUBCGv/fGvdlZsglLdwbeAZIb6A2SG8zcQD3BeAP1BHoDceeGkJzAZAW74M4VPQt4NSQFCcGhZqzJX9ULHt3NR/NouoB2ugCeASnZCvgJHLfMubceNwA2LQLOu4a42gFh7blLiH5DCGtXXYHseiRV1v/TEMctIDqpykVLkKjpBXRDv0Fj5JZxTUE615cDSVvmXzR1bAoya8fROm6rVuz/1oy7AGna3q29dQEBeVPbpyrDrkAgb9lNYDp5JJs6Jy97HcT3NknVJ4DGwKR0vACugeUnch709TRkfUi+axh3TD4C2LhHPjHH1s0gj2yf1M83IKytipyV2vbWrIBezbkUuAeeSms94JL1N6kqzgXet/isaUy7iayJVfaZuq9v24msiS7/FZDK3H9jQqvcd19uVOxcdSCLDq/Zdv496D9X5bfG87x+FEVLz/P6Wus0DMN3u661TgGyLLONKY2iaO553jCKopeyX8kHAK31LMsyl6KXaK1nNvdR2dH3/TvyXd0zxgQi4mZZFgAvAEqpSXGM1vpaRAKlVArMtdaBMWYShuGD9VNKjQBXKeWKSJBl2UJrfSsiQXEzKTBfAzHGjEVkMZ1Ob0pgtf83RCQo+wIBMDHGPIkIANPp9MbzvCEwsr7GGDbiWAMREdeSNFSauT7PiIS2EcC3IvIj12x9gbLQEf17ttVURHCMHzwff+NvDq12lWRQGt9a4wZZVnW4/eGGnieh9Z6ZkteyC3KnkZRNLeLSqlrEbklH5wqVcStbdZv9mSSJMuTk5NEKXWplBoAr+Qb96zYbB/krX8BpEopt7CzOI5fHMchjuN5HMdzx3E+ROQ1SZL309NTgDRJkiWA4zgAA5vTrh900C79ApK4ndz2P1FDAAAAAElFTkSuQmCC) no-repeat center center;
+}
+
+.cadaFormaPagamento .nomeFormaPagamento {
+  width: 100%;
+  font-size: 10px;
+  color: #333;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  text-align: center;
+  margin-top: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cadaFormaPagamento .valorPagamento {
+  width: 65px;
+  height: 22px;
+  border: 1px solid #999;
+  background: #fff;
+  margin-top: 3px;
+  border-radius: 3px;
+  font-size: 13px;
+  text-align: center;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.cadaFormaPagamento .valorPagamento:focus {
+  border-color: #0099CC;
+  outline: none;
+  background: #f7fcff;
+}
+
+.cadaFormaPagamento .valorPagamento.percentual {
+  font-size: 11px;
+  color: #777;
+  height: 19px;
+  margin-top: 2px;
+}
+
+/* Middle/Bottom Split Section & Info - Disposição Horizontal Limpa e Proporcional */
+.englobaInfoEAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  background: #fbfbfb;
+  border: 1px solid #e1e4e6;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+#infoPagamento {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+#infoEsquerda {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+/* Divisão de Conta Automática (Quantas partes pagas e quantas faltam) */
+#quadradoDividir {
+  display: flex;
+  flex-direction: column;
+  background: #F4F6F6;
+  border: 1px solid #D7DAD9;
+  border-radius: 4px;
+  padding: 6px 10px;
+  gap: 5px;
+  flex: 1;
+}
+
+.dividirHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+#quadroDividirTitulo {
+  font-size: 13px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Stepper Unificado com Número Gigante e Claro */
+.stepperWrapper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #b0b7bd;
+  border-radius: 4px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.spBtn {
+  width: 28px;
+  height: 32px;
+  background: #f1f3f5;
+  border: none;
+  font-weight: 800;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  user-select: none;
+  transition: background 0.1s;
+}
+.spBtn:hover {
+  background: #dfe3e6;
+  color: #000;
+}
+.spBtn:active {
+  background: #cbd3da;
+}
+
+#quadradoDividir .numeroDividir {
+  width: 44px;
+  height: 32px;
+  border: none;
+  border-left: 1px solid #d0d5dd;
+  border-right: 1px solid #d0d5dd;
+  border-radius: 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: #000;
+  background: #fff;
+  outline: none;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.btnCotaRapida {
+  background: #e7f1ff;
+  color: #0d6efd;
+  border: 1px solid #b6d4fe;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-left: 4px;
+}
+.btnCotaRapida:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.blocoProgressoPartes {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #ffffff;
+  border: 1px solid #d0d5dd;
+  border-radius: 4px;
+  padding: 4px 8px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.statusPartesTexto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  gap: 8px;
+}
+
+.badgePartesPagas {
+  color: #198754;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+  gap: 4px;
+}
+
+.badgePartesFaltam {
+  color: #dc3545;
+  font-weight: bold;
+}
+.badgePartesFaltam.quitado {
+  color: #198754;
+}
+
+.pillsPartes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.pillParte {
+  font-size: 11px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  padding: 2px 7px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.pillParte.paga {
+  background: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+  font-weight: bold;
+}
+
+.pillParte.proxima {
+  background: #cfe2ff;
+  color: #084298;
+  border: 1px solid #9ec5fe;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pillParte.proxima:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.pillParte.pendente {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.blocoDividirContaTotal {
+  display: flex;
+  flex-direction: column;
+  margin-left: 6px;
+  font-size: 12px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.blocoDividirContaTotal .totalPagamento span {
+  color: #d00;
+  font-weight: bold;
+}
+
+.blocoDividirContaTotal .totalPagamento strong {
+  color: #346501;
+  font-weight: bold;
+}
+
+.blocoImprimirDivisao {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+}
+
+#imprimirPagamento {
+  width: 32px;
+  height: 31px;
+  border: 1px solid #D6D6D6;
+  background: #F0F0F0 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAELklEQVQ4jY2US2hdVRSGv33euffmNk3aJG1MYm1N0zRYqxAtpYOW6sBBa3VQEHGkA0ErCJ2LDoQqpVCUjH2gglrEWihaTTBFxWLVgYNgGxrzavO4Se7rnLP32cvBTQvWCG5Yk7XX/++1+Nf+FeucT8999ktPd09nEhsThgGxyXBdl8ALsdZKmqbRhx99cmn47FvP3I311iPc2bdz265du1oc5QBgAQEyA94aYmRk5NH1sM56Sd8LzW2yLGvkdCrU6zHVagrA/PyS+d+Et27dIkl0o8ABEbDWopQijmMAwjBcD7r+yFEUEYY+WgvGGDIBYwzWgtYZSQJJkqxL+I8ORcT97py0lMvVFhEwJsOYjCTRaJ0RxylZJhhj2bSprePI/i+a7yZ0Afr7h/r27Rt6fmRk9NWF8tWTex7c07l1awf1ekLgR6RaY63FWqFWq5HP5ymVSqGKrj7W1tpxQLJg4+JSNAHLsTq4/9mdjz+x58tjTx27v7m5mc2b2/n60jcM7n6AWq2G43jgOmitSRODtRbf9xkZ/ZbjTz+JtRlTU1O8/sZr58+f//U5d+9DAydfPvHSke7ubpRS1OsxLS1ttLa2Uiy2EAQBQRQSRRG5XJ5cLkdrayue7+IqGB8fp7e3l0Jzvu/ixc9veIODg0Pbtt1HpVLBdT2yzKB1xvLyKsZYKpUKOstQSqGUgzGGKIpAHJRSuK5LtVplYGCAnp57hrwNG5p7s7VlW1paapBU68zOzmKMJUkS7G0FHRetNSKC1inb791Kf38/QRCwvOKSz+c3ekEY5o0xNDXlCcMmVldX+fGnnymVSlgLjuOA42KMwXV9lFJorbHWcPjgftI0QSkFgFKE3vT0FGNjY3hewJYtW8jlcszPz68tcUoYhhirMcbgOI1xXddFKaFSqTA3N0ulUiFJ6/h+oLxcrrlcKBQ74jhmcnKSzAh79z6M4zjo1OC6LsmaOVhrCYIAR3lYSbli5QqFQv5O1/V63XgLC4uzURTsCIKAUqnEBx+/R7lSw/M8PC9AREiShCiXwyQaIxYXhZWMwd07OHr0KChLZjUrKytV7/LYD++fOPHiga6uLur1OiKGQ4cOEccxSZIgInd+QZZlWNuQyPUUExPX2L6jl7a2NoaHh2Vi4s/L7urclmktc0MbWjb0zszMUCgUaG9vR0QIggDf9/E8D9d1GwJBQwQlXL9+TUREjY6O2jNnzlyx1r679nZfFxSOH9h/+Ozvv/2hq5VEyqt1WS5VLRUlqXFVVlcWJGbc4syPXVTJm/MyI0bf8mpU6dWi8Xiad/3XwAe+ZfZnH77nTfFiogVMVokM40wWkSnImliJa4bqVYSKZerMj4+LsVi8ZX/tK8LFy5eH7v8/Ve+5zlRUxO1Wu3Onc0ylHPbdDMym5LPR35nZ2d+ZWXFV0ppgL8Bl50zwZQM6CwAAAAASUVORK5CYII=) no-repeat center;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+#imprimirPagamento:hover {
+  background-color: #e0e0e0;
+}
+
+#infoDireita {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-left: 1px solid #dcdfe2;
+  padding-left: 14px;
+}
+
+#infoDireita .box-cell {
+  text-align: center;
+  min-width: 85px;
+}
+
+#infoDireita #porPessoaTitulo,
+#infoDireita #devidoTitulo {
+  font-size: 13px;
+  font-weight: bold;
+  color: #555;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+}
+
+#infoDireita #valorPorPessoa {
+  font-size: 26px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  color: #0d6efd;
+  font-weight: bold;
+  line-height: 1.1;
+  cursor: pointer;
+}
+#infoDireita #valorPorPessoa:hover {
+  text-decoration: underline;
+}
+
+#infoDireita #valorDevido {
+  font-size: 28px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  color: #000;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+#infoDireita #valorTroco {
+  font-size: 28px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+  color: #4e9801;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+/* Action Button FATURAR (ENTER) - Perfeitamente proporcional */
+#englobaInfoPagamentos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #dcdfe2;
+  padding-left: 12px;
+}
+
+#faturar.cadaQuadroAcoes.concluir {
+  width: 94px !important;
+  height: 86px !important;
+  min-height: 86px !important;
+  max-height: 86px !important;
+  background: linear-gradient(#4E9801, #346501);
+  border: 1px solid #2d5601;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+  padding: 6px 4px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+#faturar.cadaQuadroAcoes.concluir:hover {
+  background: linear-gradient(#56a602, #3c7402);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+#faturar.cadaQuadroAcoes.concluir:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+#faturar #baixarIcone {
+  width: 32px;
+  height: 28px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAYAAABzJ5OsAAAEWklEQVRogd1a25WbSBC91fh/ZiMYMpjJYMjA2gjMHkTzaTYDbQTGn4KZY20Eq80AR7ByBtoMNAHQtR8q5AIjBHhG0tn71Wr6cSmqq+shwitgPp+/N8Y8MLMPwD82johKANuqqsrn5+d/f3ZfmjLJWnvjnAuMMSGA2cS9t8ycOefWU19kNPk4jj8SUYoeCY8BM+8ArIkozfP8ZczcweTjOH4EkBHRQweBkohK59yGiHZHNyMKmNknogDdL7/I8/yPoZwGkY/j+AsRha3uLTNnRLQaKzHgcE5CtNSOmTfGmHC5XH47tUYveWvtDTOvRVIH0s659Onp6e+xhLsQRdGdMWahhYNMP1GjP/vm9pKP4/gfrSbMnE6V9CnEcfxIRCsodXLOzfqEdJS8VhU5VLOiKL4OJRNF0Z3neWFVVauh1kS+dKb3NcYEx1TIHFnkk/6MxphgDHGZswKw8DyvHDonz/OXoih+A7AGACK6dc6VURTdde7R7pjP5+8BpKpr0OFpQ50Tf+xcACEzb2SdW2PMumtQg3wURXeidzUWpw7NWyDP8xcxqzsAIKIHa+2n9rgGec/zMiK6Bfa2e4zNfW2IUdBmNE2S5F6POZCXS2gG7A+Kcy48B8k+yDnL6t/OuUw/15Jf1A0iyl7DcXolLJT6BCJkAEI+SZL7+oDJwKxrlUtA9P/AR/wqAEKemUP18E0uoZ+EFubMWnsDfFebw8FoWZurgAhTm8sZABi5AHzp3E6x6WfCgTwzBwBgPM8L1IDNmQkNBhFtVDsA9mrjqzFXS76lET4AmPoTAIBz7mrJA3tfv27HcfzYuGH7oqArQYPfu1Oj4zj+CGBRuw1TYK3lkVMGBTy95MWeXuLC8sVk/9I3qNOfr9FhX88Gfasewzut50TkA2gEHXme/zplc60qeZ5Pyg+1IfwAAMaYnUHTPPq4bvh1Y7lcfjMAturhDzmZa0HLl98CgKmqqlSdV0uemXUWowQAI377Vvr9drRyRdDOYwl8tzba6QnPSmkAxGTrkHANCHntBjNzWPvLVwSdzVjX8YYB9ie31iO5SdMfpl8Ikog68GHmg/3vjGGZOb0i6ac6o6GTXwfyRVF81dLXb3gpSKC0UF263XQPnHOhitRDa+2HtyZ4DNbam1amLGunHBvkxWwuVNfqgqZzpTLUW7SkDng4ZkVRfGbmVf3bOVdK/nIstsAhlTIY1toba+1fUAkwIpp1ZTQ6vUoiStuJzrEqxMwhM5dj7g2xLCWaF1J6LClw1NsTa7PSC711cQH7wlptWXbMHE4qLqhFG/WoMTWjIRAhLaDullNFhRqD/GxJLzcuLqkArqamwJMkuXfOpQBmOsRk5tI5Fw7JlQ4OEpIkuWfmNVo+vxyolXOuNMaUfSoldaeAmWddJVEAWZ7nvw/lNCrCkc+ciu5PDsjbGCNtjcnle7Ei4REJnoR8sbKqqvRs5fs2RHcDScH1/g+BmTdSKT+pYv97/AfJQk3XgoruRQAAAABJRU5ErkJggg==) no-repeat center center;
+  background-size: 24px;
+  margin-bottom: 2px;
+}
+
+#faturar .tituloQuadroAcao {
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* Badge de Divisão de Mesa na Visualização de Mesas */
+.divisaoMesaBadge {
+  background: #e7f3ff;
+  border: 1px solid #b6d4fe;
+  color: #0d6efd;
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 3px;
+  padding: 1px 4px;
+  text-align: center;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* History of Registered Payments (valoresPagos.tpl) */
+#soPagamentosFeitos {
+  width: 100%;
+  margin-top: 12px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+
+#soPagamentosFeitos .tituloHistorico {
+  font-size: 12px;
+  font-weight: bold;
+  color: #444;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.cadaPagamentoFeito {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-bottom: 1px dashed #e0e0e0;
+  font-size: 13px;
+  font-family: Calibri, 'Segoe UI', sans-serif;
+}
+.cadaPagamentoFeito:last-child {
+  border-bottom: none;
+}
+
+.cadaPagamentoFeito .infoPag {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cadaPagamentoFeito .infoValor {
+  font-weight: bold;
+  color: #346501;
+  font-size: 14px;
+}
+
+.cadaPagamentoFeito .btnEstorno {
+  background: #d9534f;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  padding: 2px 7px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.cadaPagamentoFeito .btnEstorno:hover {
+  background: #c9302c;
+}
+
+/* Item breakdown toggle accordion */
+.pagamentoItensArea {
+  margin-top: 10px;
+  background: #fdfdfd;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+.pagamentoItensArea summary {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  color: #03657c;
+  outline: none;
+}
+
+/* ==========================================================================
+   MODAL DE DIVISÃO DE VALORES POR ITEM - EI CHEFE (ModalDivisaoValores / botoesPagarListaProdutos)
+   ========================================================================== */
+
+.btn-dividir {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #8116d7 !important;
+  background-color: #FFF !important;
+  color: #8116d7 !important;
+  border-radius: 14px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.btn-dividir:hover {
+  background-color: #8116d7 !important;
+  color: #FFF !important;
+}
+.btn-dividir .icon-dividir {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.btn-qtde-min-max {
+  display: inline-block;
+  border: 1px solid #707070 !important;
+  background-color: #FFF !important;
+  color: #333 !important;
+  border-radius: 14px;
+  padding: 1px 8px;
+  font-size: 11px !important;
+  font-weight: 700;
+  text-align: center;
+}
+.btn-qtde-min-max.cores-qtd-pago {
+  background-color: #B0EAAE !important;
+  color: #369B5E !important;
+  border-color: #369B5E !important;
+}
+
+.btnPagarCotaItem {
+  background: #369B5E;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 2px;
+  transition: background 0.15s ease;
+  user-select: none;
+}
+.btnPagarCotaItem:hover {
+  background: #287a48;
+}
+
+.btnCancelaDivisaoItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dc3545;
+  background: #fff;
+  color: #dc3545;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 2px;
+  transition: all 0.15s ease;
+}
+.btnCancelaDivisaoItem:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+/* Modal Overlay & Box */
+.modalDivisaoOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(2px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.modalDivisaoBox {
+  width: 780px;
+  max-width: 96vw;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  padding: 18px 22px;
+  color: #333;
+  font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+.modalDivisaoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #E4E5E9;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+.modalDivisaoHeader h3 {
+  margin: 0;
+  font-size: 19px;
+  color: #333;
+  font-weight: bold;
+}
+.modalDivisaoHeader small {
+  color: #666;
+  font-size: 12px;
+  display: block;
+  margin-top: 4px;
+}
+
+.fecharModalDivisao {
+  cursor: pointer;
+  color: #dc3545;
+  font-weight: bold;
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+.fecharModalDivisao:hover {
+  background: #ffebee;
+}
+
+.modalDivisaoBody {
+  margin-bottom: 15px;
+  overflow-x: auto;
+}
+
+.table-dividir-valores {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+.table-dividir-valores thead tr th {
+  font-size: 14px;
+  color: #000;
+  font-weight: 700;
+  border-bottom: 2px solid #DADDDC;
+  padding: 8px 6px;
+  text-align: left;
+}
+.table-dividir-valores thead tr th.qtde,
+.table-dividir-valores thead tr th.total {
+  text-align: center;
+}
+.table-dividir-valores thead tr th.qtde {
+  width: 70px;
+}
+.table-dividir-valores thead tr th.qtde-dividir {
+  width: 175px;
+}
+.table-dividir-valores thead tr th.qtde-pessoas {
+  width: 140px;
+}
+.table-dividir-valores thead tr th.total {
+  width: 140px;
+}
+
+.table-dividir-valores tbody tr td {
+  border: 0;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 6px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.table-dividir-valores .numero {
+  width: 45px;
+  height: 32px;
+  padding: 2px 4px;
+  text-align: center;
+  border: 1px solid #FFA316;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.table-dividir-valores .btn-edit-lista {
+  border: 1px solid #FFA316;
+  border-radius: 20px;
+  width: 32px !important;
+  height: 32px;
+  background: #fff;
+  color: #FFA316;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+.table-dividir-valores .btn-edit-lista:hover {
+  background: #FFA316;
+  color: #fff;
+}
+.table-dividir-valores .btn-edit-lista.btn-tudo {
+  border-radius: 6px;
+  font-size: 13px;
+  width: 28px !important;
+  height: 28px;
+  line-height: 26px;
+}
+
+.table-dividir-valores td.total .badge.badge-success {
+  background-color: #369B5E !important;
+  color: #FFFFFF !important;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 6px;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(54, 155, 94, 0.25);
+}
+
+.modalDivisaoFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #E4E5E9;
+  padding-top: 14px;
+  margin-top: 5px;
+}
+.modalDivisaoFooter .btn-faturar-cota {
+  background: #369B5E;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.modalDivisaoFooter .btn-faturar-cota:hover {
+  background: #2b7a4b;
+}
+.modalDivisaoFooter .btn-faturar-cota:disabled,
+.modalDivisaoFooter button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   MODAL DE CANCELAMENTO DE ITEM - EI CHEFE (cancelarProdutos.tpl / alterarProdutos.tpl)
+   ========================================================================== */
+
+.modalCancelarItemOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.modalCancelarItemBox {
+  width: 580px;
+  max-width: 95vw;
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  padding: 18px 22px;
+  color: #333;
+  font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+.modalCancelarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid #dc3545;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+.modalCancelarHeader h3 {
+  margin: 0;
+  font-size: 19px;
+  color: #dc3545;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.modalCancelarHeader small {
+  color: #666;
+  font-size: 12px;
+  display: block;
+  margin-top: 3px;
+}
+
+.fecharModalCancelar {
+  cursor: pointer;
+  color: #dc3545;
+  font-weight: bold;
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s;
+}
+.fecharModalCancelar:hover {
+  background: #fee2e2;
+}
+
+.cardItemCancelInfo {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #dc3545;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.formGroupCancel {
+  margin-bottom: 12px;
+}
+
+.stepperCancelWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btnStepperCancel {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dc3545;
+  background: #fff;
+  color: #dc3545;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.btnStepperCancel:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+.inpStepperCancel {
+  width: 55px;
+  height: 34px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modalCancelarFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 14px;
+  margin-top: 14px;
+}
+
+.btn-cancelar-item-mesa {
+  transition: all 0.15s ease;
+  font-weight: 600;
+  user-select: none;
+}
+.btn-cancelar-item-mesa:hover {
+  filter: brightness(0.9);
+}
+
+/* Balcão - Cartão de Identificação do Cliente (Estilo EiChefe terminalBalcao) */
+.balcao-cliente-card {
+  margin-top: 12px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-left: 4px solid var(--balcao);
+  border-radius: 8px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.balcao-cliente-card.invalido {
+  border-color: #f87171;
+  border-left-color: #dc3545;
+  background: #fffafa;
+}
+
+/* ==========================================================================
+   MODAL DE CONFIRMAÇÃO DE FECHAMENTO DE MESA
+   ========================================================================== */
+
+.modalConfirmarFechamentoOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(3px);
+  z-index: 1000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.modalConfirmarFechamentoBox {
+  width: 520px;
+  max-width: 95vw;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  padding: 22px 24px;
+  color: #333;
+  font-family: Calibri, 'Segoe UI', Tahoma, sans-serif;
+  box-sizing: border-box;
+  border-top: 5px solid #eab308;
+}
+
+.headerConfirmarFechamento {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.resumoCardFechamento {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0;
+}
+
+.linhaResumoFech {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 13.5px;
+  color: #475569;
+}
+.linhaResumoFech b {
+  color: #1e293b;
+}
+
+.avisoLiberacaoMesa {
+  background: #fefce8;
+  border: 1px solid #fef08a;
+  color: #854d0e;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+.footerConfirmarFechamento {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 15px;
+  margin-top: 16px;
+}
+
+/* ---------- Painel Dedicado do Balcão (Estilo EiChefe terminalBalcao) ---------- */
+.eichefe-balcao-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px;
+}
+
+.balcao-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.balcao-summary-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--balcao);
+}
+
+.balcao-summary-card .label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.balcao-summary-card .val {
+  font-size: 19px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.englobaBalcaoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 12px;
+  overflow-y: auto;
+  max-height: calc(100vh - 270px);
+  padding-bottom: 16px;
+}
+
+.cadaBalcaoCard {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+  overflow: hidden;
+  border-top: 5px solid var(--balcao);
+}
+
+.cadaBalcaoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.cadaBalcaoCard.pronto {
+  border-top-color: #28a745;
+  background: #fcfdfc;
+}
+
+.cadaBalcaoCard.fechado {
+  border-top-color: #64748b;
+  opacity: 0.88;
+  background: #f8fafc;
+}
+
+.cadaBalcaoCard .card-header {
+  padding: 9px 12px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cadaBalcaoCard .card-header .comanda-num {
+  font-size: 17px;
+  font-weight: 900;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cadaBalcaoCard .card-body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.cadaBalcaoCard .cliente-nome {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.25;
+}
+
+.cadaBalcaoCard .cliente-phone {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.cadaBalcaoCard .obs-box {
+  background: #fffbeb;
+  border-left: 3px solid #f59e0b;
+  color: #92400e;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.cadaBalcaoCard .itens-box {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: #334155;
+  max-height: 130px;
+  overflow-y: auto;
+  line-height: 1.45;
+}
+
+.cadaBalcaoCard .card-footer {
+  padding: 8px 12px;
+  background: #fafafa;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cadaBalcaoCard .card-footer .total-val {
+  font-size: 16px;
+  font-weight: 900;
+  color: #15803d;
+}
+
+.cadaBalcaoCard .card-actions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  justify-content: flex-end;
+}
