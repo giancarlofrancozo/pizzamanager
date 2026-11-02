@@ -1,12 +1,10 @@
-# 🍕 PizzaManager — Sistema de Gestão para Pizzarias e Restaurantes
+#  PizzaManager — Sistema de Gestão para Pizzarias e Restaurantes
 
 Sistema completo e moderno para gestão operacional de pizzarias, salões e delivery, desenvolvido com foco em alta performance, robustez offline/local e facilidade de operação.
 
-Inspirado nos melhores fluxos do EiChefe Gestão, o sistema opera de forma autônoma na rede local com sincronização em tempo real entre computadores do caixa, telas de produção (KDS), garçons e impressão térmica por setor.
-
 ---
 
-## 🚀 Principais Módulos e Recursos
+##  Principais Módulos e Recursos
 
 ### 🍽️ Gestão de Salão & Mesas
 - Visualização em grade e cartões dinâmicos com status em tempo real (Livre, Ocupada, Pronta no KDS, Em Conta/Fechamento).
@@ -14,39 +12,39 @@ Inspirado nos melhores fluxos do EiChefe Gestão, o sistema opera de forma autô
 - Transferência e união de mesas.
 - Divisão de conta por pessoas ou itens individuais.
 
-### 🛍️ Vendas de Balcão
+###  Vendas de Balcão
 - Painel dedicado de comandas de balcão com contadores em tempo real.
 - Suporte a acréscimo de itens em comandas abertas com impressão seletiva na cozinha (somente novos itens).
 - Histórico de pedidos e identificação de clientes cadastrados.
 
-### 🛵 Delivery & Painel Kanban
+###  Delivery & Painel Kanban
 - Fluxo de pedidos em 3 colunas (*Em Preparo*, *Despacho/Retirada*, *Em Entrega*).
 - Cálculo automático de taxa de entrega por bairro ou valor personalizado.
 - Controle de troco, forma de pagamento e observações de entrega.
 - Atribuição de entregadores (motoboys) e despacho com 1 clique.
 
-### 🍳 Cozinha & KDS (Kitchen Display System)
+###  Cozinha & KDS (Kitchen Display System)
 - Tela de produção para a equipe da cozinha em tempo real.
 - Avanço de estágios de preparo (*Montagem*, *Forno*, *Finalização/Pronto*).
 - Alertas visuais de tempo de espera e itens urgentes.
 
-### 🖨️ Impressão Térmica ESC/POS por Setor
+###  Impressão Térmica ESC/POS por Setor
 - Roteamento inteligente de impressão para impressoras de rede/USB (Cozinha, Forno, Bar, Caixa).
 - Impressão automática de comandas de produção e cupons de conferência.
 - Visualizador e preview térmico integrado no navegador.
 
-### 🧾 Emissão Fiscal NFC-e
+###  Emissão Fiscal NFC-e
 - Integração para emissão de Nota Fiscal de Consumidor Eletrônica (NFC-e).
 - Emissão em 1 clique ou automática no faturamento da conta (`F9`).
 - Suporte a CPF na nota e cancelamento de notas fiscais.
 
-### 📱 App Garçom (Android & Web)
+###  App Garçom (Android & Web)
 - Interface web responsiva e aplicativo nativo APK (`/download/Caseiro-Pizzaria.apk`) para dispositivos móveis dos garçons.
 - Lançamento rápido de pedidos diretamente nas mesas.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 - **Backend:** Node.js (v18+) + Express
 - **Banco de Dados:** SQLite com Sequelize ORM (modo WAL para alta concorrência)
@@ -56,14 +54,14 @@ Inspirado nos melhores fluxos do EiChefe Gestão, o sistema opera de forma autô
 
 ---
 
-## 📋 Pré-requisitos
+##  Pré-requisitos
 
 - [Node.js](https://nodejs.org/) versão 18 ou superior
 - Sistema Operacional: Windows 10/11 ou Linux/macOS
 
 ---
 
-## ⚙️ Instalação e Execução
+##  Instalação e Execução
 
 ### 1. Clonar o repositório
 ```bash
@@ -94,7 +92,7 @@ http://localhost:3000
 
 ---
 
-## 📂 Estrutura de Pastas
+##  Estrutura de Pastas
 
 ```text
 ├── db/              # Diretório do banco de dados SQLite local
@@ -112,6 +110,6 @@ http://localhost:3000
 
 ---
 
-## 📄 Licença
+##  Licença
 
 Este projeto é distribuído sob a licença [MIT](LICENSE).
